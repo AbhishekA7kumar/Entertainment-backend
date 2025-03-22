@@ -1,0 +1,871 @@
+{
+	"info": {
+		"_postman_id": "c47f9e4b-92af-42d9-ae63-b8acfef3291e",
+		"name": "Entertainment-App-Backend",
+		"description": "This API provides functionality for managing user authentication and bookmarking movies and TV series. It includes routes for user registration, login, profile access, and the ability to bookmark movies and TV series.\n\nPrerequisite :\n\nSet environment variables :\n\n1. baseURL\n    \n2. token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "40428590",
+		"_collection_link": "https://entertainment-app-backend.postman.co/workspace/abfd3b62-75e7-4af7-896f-d4768ff8b4a4/collection/40428590-c47f9e4b-92af-42d9-ae63-b8acfef3291e?action=share&source=collection_link&creator=40428590"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body should not be null\", function () {\r",
+									"    pm.expect(pm.response.text()).to.not.equal('null');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Sample\",\r\n  \"email\": \"sample2@gmail.com\",\r\n  \"password\": \"Sample2@123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/user/register",
+						"description": "This endpoint allows a user to register by providing their name, email, and password. The server checks if the user already exists and returns an appropriate message if the user is already registered. If the registration is successful, the server responds with a success."
+					},
+					"response": [
+						{
+							"name": "signup - New User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Sample\",\r\n  \"email\": \"sample2@gmail.com\",\r\n  \"password\": \"Sample2@123\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:4000/user/register"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-nMoFx54+czTntmSLXl3mqIsZV4A\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Dec 2024 17:25:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User registered successfully\"\n}"
+						},
+						{
+							"name": "signup - Existing User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Sample\",\r\n  \"email\": \"sample2@gmail.com\",\r\n  \"password\": \"Sample2@123\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseURL}}/user/register"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-iGErLku/9taeeOQN+9qwFgLXnuo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Dec 2024 17:25:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User already exists\"\n}"
+						}
+					]
+				},
+				{
+					"name": "User-Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response body should not be null\", function () {\r",
+									"    pm.expect(pm.response.text()).to.not.equal(null);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": "{{baseURL}}/user/profile",
+						"description": "This endpoint is used to access the User Profile."
+					},
+					"response": [
+						{
+							"name": "User Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NWRiZjc0ZjgxMmE1ZmQ1N2VmMDk5ZSIsIm5hbWUiOiJTYW1wbGUiLCJlbWFpbCI6InNhbXBsZTJAZ21haWwuY29t...",
+										"type": "text"
+									}
+								],
+								"url": "http://localhost:4000/user/profile"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "133"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"85-HTYIT+VI+pGsULJ6T2UXbyNooPg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Dec 2024 17:53:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Profile accessed\",\n    \"user\": {\n        \"id\": \"675dbf74f812a5fd57ef099e\",\n        \"name\": \"Sample\",\n        \"email\": \"sample2@gmail.com\",\n        \"role\": \"Customer\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"sample2@gmail.com\",\r\n  \"password\": \"Sample2@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/user/login",
+						"description": "This endpoint allows an existing user to log in by providing their email and password. If the credentials are valid, the server generates a **JWT token** for authentication. The token can be used to make authenticated requests to other endpoints."
+					},
+					"response": [
+						{
+							"name": "Invalid User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"sample2@gmail.com\",\r\n  \"password\": \"Sample@123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:4000/user/login"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-K6t5t0nTUsQRRVU6OYm3/dZkbWQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Dec 2024 17:56:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid credetials\"\n}"
+						},
+						{
+							"name": "Login - Successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"sample2@gmail.com\",\r\n  \"password\": \"Sample2@123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseURL}}/user/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "562"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"232-jFbGc5QR7dI8K/00481zcp1KHcI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Dec 2024 17:58:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login successful\",\n    \"entertainmentAppToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NWRiZjc0ZjgxMmE1ZmQ1N2VmMDk5ZSIsIm5hbWUiOiJTYW1wbGUiLCJlbWFpbCI6InNhbXBsZTJAZ21haWwuY29tIiwicm9sZSI6IkN1c3RvbWVyIiwiaWF0IjoxNzM0MTk5MDg2LCJleHAiOjE3NjU3NTY2ODZ9.lu2qT-ckxEKnPQ_l0XeS34mrWoXrNHNL1stkn0TlcLU\",\n    \"tmdbToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODg5MzNmMDBlMjMxOGYxZTk3NzdlNmVjMDFlNWViMyIsIm5iZiI6MTczMzU1MjYzNC42Niwic3ViIjoiNjc1M2U5ZmEwOTUyNzZhYTg1NjU4YWJkIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.-jYwwNTNuB8VPnsm6D9_B1bF2B7UBMFHUxXZQTxjz9w\"\n}"
+						}
+					]
+				},
+				{
+					"name": "User Logout",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": "{{baseURL}}/user/logout",
+						"description": "This endpoint logs the user out of the application. It doesn't require any request body. A success message is returned indicating that the user has been logged out."
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NWRiZjc0ZjgxMmE1ZmQ1N2VmMDk5ZSIsIm5hbWUiOiJTYW1wbGUiLCJlbWFpbCI6InNhbXBsZTJAZ21haWwuY29t...",
+										"type": "text"
+									}
+								],
+								"url": "http://localhost:4000/user/logout"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-yg5L5VGwW8spycQG4U3oDNh62qs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Dec 2024 18:01:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User successfully logged out.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The **User API** contains all the routes related to user management in the backend. This API's are responsible for handling tasks such as user registration, login, logging out, and accessing user profile information. These functionalities ensure that users can interact with the application securely by creating accounts, authenticating, and managing their sessions."
+		},
+		{
+			"name": "Bookmark",
+			"item": [
+				{
+					"name": "Movie",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookmark\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/tv/bookmarks",
+						"description": "This endpoint retrieves all the movies that the authenticated user has bookmarked. The user must be authenticated with a valid JWT token."
+					},
+					"response": [
+						{
+							"name": "Movie - Get Bookmark",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NWRiZjc0ZjgxMmE1ZmQ1N2VmMDk5ZSIsIm5hbWUiOiJTYW1wbGUiLCJlbWFpbCI6InNhbXBsZTJAZ21haWwuY29t...",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"bookmark\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:4000/movie/bookmarks"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Dec 2024 18:13:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "Tv-Series",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookmark\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/tv/bookmarks",
+						"description": "This endpoint retrieves all the TV series that the authenticated user has bookmarked. The user must be authenticated with a valid JWT token.EndFragment"
+					},
+					"response": [
+						{
+							"name": "Get Bookmark",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"bookmark\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:4000/tv/bookmarks"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76-lbbqmjc5xb/KC0/wMoRaAouvsoQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Dec 2024 18:19:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"675dcbe45ab66f8d7df1a622\",\n        \"tv_series_id\": 73586,\n        \"user_id\": \"675dbf74f812a5fd57ef099e\",\n        \"__v\": 0,\n        \"bookmark\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Movie - Create Bookmark",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookmark\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/movie/bookmark/912649",
+						"description": "This endpoint allows users to mark certain movies as their favorites (bookmarks)."
+					},
+					"response": [
+						{
+							"name": "Create Bookmark",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"bookmark\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:4000/movie/bookmark/912649"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-TMTpUPmwzThc5ibBkndbEizuR+4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 04:09:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"675dca5f5ab66f8d7df1a5c7\",\n    \"movie_id\": 912649,\n    \"user_id\": \"675dbf74f812a5fd57ef099e\",\n    \"__v\": 0,\n    \"bookmark\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "TV Create Bookmark",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookmark\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/tv/bookmark/73586",
+						"description": "This endpoint allows users to mark certain TV shows as their favorites (bookmarks)."
+					},
+					"response": [
+						{
+							"name": "Create Bookmark",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"bookmark\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:4000/tv/bookmark/73586"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "116"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"74-haYI01Qtt6qqWE4sHcxxrkQwfTg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 04:07:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"675dcbe45ab66f8d7df1a622\",\n    \"tv_series_id\": 73586,\n    \"user_id\": \"675dbf74f812a5fd57ef099e\",\n    \"__v\": 0,\n    \"bookmark\": true\n}"
+						}
+					]
+				}
+			],
+			"description": "The **Bookmark API's are** responsible for handling the API related to bookmarking movies and TV series. It allows users to mark certain movies or TV shows as their favorites (bookmarks) and later retrieve the bookmarked items. The API defines routes for both managing movie and TV series bookmarks, and ensures that users can securely store and retrieve their bookmarks."
+		}
+	]
+}
