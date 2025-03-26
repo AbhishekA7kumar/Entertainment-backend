@@ -43,7 +43,7 @@ movieRouter.get('/bookmarks', passport.authenticate('jwt', { session: false }), 
 
   try {
 
-
+    console.log("Authenticated User: ", req.user);
     const query = MovieBookmark.find(
       {
         "user_id": req.user._id,
